@@ -1,0 +1,19 @@
+{
+ "advertise_addr": "172.20.132.250",		##### user filled
+ "advertise_addr_wan": "172.20.132.250",	##### user filled
+ "bind_addr": "172.20.132.250",			##### user filled
+ "client_addr": "172.20.132.250",			##### user filled
+ "datacenter": "mini-dc",
+ "dns_config": {
+   "a_record_limit": 3,
+   "enable_truncate": true
+ },
+ "enable_syslog": true,
+ "leave_on_terminate": true,
+ "log_level": "WARN",
+ "node_name": "mini-pot",
+ "translate_wan_addrs": true,
+ "ui": true,
+ "server": true,
+ "bootstrap_expect": 1
+}
