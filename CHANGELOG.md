@@ -12,3 +12,4 @@ nomad: server configuration file
 syslogd: configuration files
 newsyslogd: log rotation configuration files
 bootstrap.sh: script with additional conifguration and preparation
+example: add a job example
