@@ -1,0 +1,59 @@
+job "nginx-minipot" {
+  datacenters = ["minipot"]
+  type        = "service"
+
+  group "group1" {
+    count = 1 
+    meta = {
+      version = "1"
+    }
+
+    update {
+      max_parallel     = 1 
+      min_healthy_time = "10s"
+      healthy_deadline = "8m"
+      auto_revert      = true
+    }
+
+    task "www1" {
+      driver = "pot"
+
+      service {
+        tags = ["nginx", "www"]
+        name = "hello-web"
+        port = "http"
+
+         check {
+            type     = "tcp"
+            name     = "tcp"
+            interval = "5s"
+            timeout  = "2s"
+          }
+      }
+
+      config {
+        image = "https://pot-registry.zapto.org/registry/"
+        pot = "FBSD120-nginx"
+        tag = "1.0"
+        command = "nginx"
+        args = [ 
+          " -g 'daemon off;'"
+        ]
+
+        port_map = {
+          http = "80"
+        }
+      }
+
+      resources {
+        cpu = 200
+        memory = 64
+
+        network {
+          mbits = 10
+          port "http" {}
+        }
+      }
+    }
+  }
+}
