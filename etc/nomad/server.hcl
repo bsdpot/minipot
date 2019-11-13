@@ -4,8 +4,7 @@ plugin_dir = "/usr/local/libexec/nomad/plugins"
 advertise {
   # This should be the IP of THIS MACHINE and must be routable by every node
   # in your cluster
-  http= "172.20.132.250:4646"		##### user filled
-  rpc = "172.20.132.250:4647"		##### user filled
+  http = "172.20.132.250:4646"
 }
 
 server {
@@ -22,7 +21,7 @@ client {
 
 consul {
   # The address to the Consul agent.
-  address = "172.20.132.250:8500"	##### user filled
+  address = "172.20.132.250:8500"
 
   # The service name to register the server and client with Consul.
 
@@ -35,3 +34,8 @@ consul {
   server_auto_join = false
   client_auto_join = true
 }
+
+enable_syslog=true
+log_level="INFO"
+syslog_facility="LOCAL1"
+
