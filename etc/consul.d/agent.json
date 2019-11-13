@@ -1,8 +1,5 @@
 {
- "advertise_addr": "172.20.132.250",		##### user filled
- "advertise_addr_wan": "172.20.132.250",	##### user filled
- "bind_addr": "172.20.132.250",			##### user filled
- "client_addr": "172.20.132.250",			##### user filled
+ "bind_addr": "127.0.0.1",
  "datacenter": "mini-dc",
  "dns_config": {
    "a_record_limit": 3,
