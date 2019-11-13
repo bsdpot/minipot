@@ -1,5 +1,6 @@
 bind_addr = "0.0.0.0"
 plugin_dir = "/usr/local/libexec/nomad/plugins"
+datacenter = "minipot"
 
 advertise {
   # This should be the IP of THIS MACHINE and must be routable by every node
