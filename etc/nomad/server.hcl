@@ -25,8 +25,8 @@ consul {
   address = "172.20.132.250:8500"
 
   # The service name to register the server and client with Consul.
-
-  client_service_name = "nomad-client"
+  server_service_name = "minipot-server"
+  client_service_name = "minipot-client"
 
   # Enables automatically registering the services.
   auto_advertise = true
