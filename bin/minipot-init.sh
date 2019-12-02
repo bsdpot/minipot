@@ -11,10 +11,7 @@ _inject_ip()
 {
 	local ip="$1"
 	# configure consul
-	sysrc consul_enable="-advertise $ip"
-	# configure traefik
-	sed -i '' -e "s/[:blank:]*address = \".*:8080\"$/    address = \"$ip:8080\"/" /usr/local/etc/traefik.toml
-	sed -i '' -e "s/[:blank:]*address = \".*:9002\"$/    address = \"$ip:9002\"/" /usr/local/etc/traefik.toml
+	sysrc consul_args="-advertise $ip"
 }
 
 if [ "$#" -lt 2 ]; then
@@ -38,11 +35,6 @@ while getopts :i:h arg; do
 	esac
 done
 
-if [ -z "$ip" ]; then
-	print_syntax
-	exit 1
-fi
-
 mkdir -p /usr/local/etc/consul.d
 sysrc nomad_user="root"
 sysrc nomad_env="PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/sbin:/bin"
@@ -59,3 +51,8 @@ touch /var/log/traefik.log
 touch /var/log/traefik-access.log
 chown traefik:traefik /var/log/traefik.log
 chown traefik:traefik /var/log/traefik-access.log
+
+if [ -n "$ip" ]; then
+	_inject_ip "$_ip"
+fi
+
