@@ -11,14 +11,10 @@ _inject_ip()
 {
 	local ip="$1"
 	# configure consul
-	sysrc consul_enable="-client $ip -advertise $ip"
-	# configure nomad
-	sed -i '' -e "s/[:blank:]*http = \".*:4646\"$/  http = \"$ip:4646\"/" /usr/local/etc/nomad/server.hcl
-	sed -i '' -e "s/[:blank:]*address = \".*:8500\"$/  http = \"$ip:8500\"/" /usr/local/etc/nomad/server.hcl
+	sysrc consul_enable="-advertise $ip"
 	# configure traefik
 	sed -i '' -e "s/[:blank:]*address = \".*:8080\"$/    address = \"$ip:8080\"/" /usr/local/etc/traefik.toml
 	sed -i '' -e "s/[:blank:]*address = \".*:9002\"$/    address = \"$ip:9002\"/" /usr/local/etc/traefik.toml
-	sed -i '' -e "s/[:blank:]*endpoint = \".*:8500\"$/  endpoint = \"$ip:8500\"/" /usr/local/etc/traefik.toml
 }
 
 if [ "$#" -lt 2 ]; then

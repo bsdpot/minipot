@@ -1,5 +1,6 @@
 {
  "bind_addr": "0.0.0.0",
+ "client_addr": "0.0.0.0",
  "datacenter": "mini-dc",
  "dns_config": {
    "a_record_limit": 3,

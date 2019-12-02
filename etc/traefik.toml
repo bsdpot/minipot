@@ -1,8 +1,8 @@
 [entryPoints]
   [entryPoints.http]
-    address = "10.1.12.25:8080"
+    address = "0.0.0.0:8080"
   [entryPoints.traefik]
-    address = "10.1.12.25:9002"
+    address = "0.0.0.0:9002"
 
 logLevel="INFO"
 [traefikLog]
@@ -13,7 +13,7 @@ logLevel="INFO"
 [api]
   dashboard = true
 [consulcatalog]
-  endpoint = "10.1.12.25:8500"
+  endpoint = "127.0.0.1:8500"
   stale = false
   exposedByDefault = true
   frontEndRule = "Host:{{ .ServiceName }}.minipot"

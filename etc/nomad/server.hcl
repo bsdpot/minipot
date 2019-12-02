@@ -5,7 +5,7 @@ datacenter = "minipot"
 advertise {
   # This should be the IP of THIS MACHINE and must be routable by every node
   # in your cluster
-  http = "172.20.132.250:4646"
+  http = "127.0.0.1:4646"
 }
 
 server {
@@ -22,7 +22,7 @@ client {
 
 consul {
   # The address to the Consul agent.
-  address = "172.20.132.250:8500"
+  address = "127.0.0.1:8500"
 
   # The service name to register the server and client with Consul.
   server_service_name = "minipot-server"
