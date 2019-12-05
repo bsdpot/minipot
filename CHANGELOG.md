@@ -8,10 +8,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 traefik: proxy configuration file
 newsyslogd: log rotation for traefik
+cron: pot prune cron job (every 15 minutes)
 
 ### Changed
 consul: agent bind to 0.0.0.0
 nomad: small naming improvements
+minipot-init.sh: renamed from bootstrap.sh
+Provide the IP is not mandatory anymore
 
 ## [0.0.1] 2019-11-13
 ### Added

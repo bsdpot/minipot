@@ -2,8 +2,9 @@
 
 print_syntax ()
 {
-	echo "Syntax: $0 -i IPADDRESS"
+	echo "Syntax: $0 [-i IPADDRESS]"
 	echo "Please use the IP address of the machine where minipot is supposed to run"
+	echo "The -i option is mandatory if the your machine has more than one routable IP address"
 }
 
 # $1 the IP address
@@ -13,11 +14,6 @@ _inject_ip()
 	# configure consul
 	sysrc consul_args="-advertise $ip"
 }
-
-if [ "$#" -lt 2 ]; then
-	print_syntax
-	exit 1
-fi
 
 while getopts :i:h arg; do
 	case $arg in
@@ -35,7 +31,6 @@ while getopts :i:h arg; do
 	esac
 done
 
-mkdir -p /usr/local/etc/consul.d
 sysrc nomad_user="root"
 sysrc nomad_env="PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/sbin:/bin"
 sysrc nomad_args="-config=/usr/local/etc/nomad/server.hcl"
