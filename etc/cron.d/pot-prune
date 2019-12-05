@@ -1,0 +1,4 @@
+SHELL=/bin/sh
+PATH=/bin:/sbin:/usr/bin:/usr/sbin/usr/local/bin:/usr/local/sbin
+
+*/15 * * * * root /usr/local/bin/pot prune
