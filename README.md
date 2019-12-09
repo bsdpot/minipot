@@ -1,19 +1,86 @@
-# mini-pot
+# minipot
 
 This project is a collection of configuration files that allows to emulate a nomad cluster in one server/VM
-It's a FreeBSD nomad-pot version of minikube
+It's like minikube, but it' for FreeBSD, and based on pot and nomad.
 
-## How to use it
+## A service mesh based on FreeBSD
 
-* install the packages
-* copy the configuration files
-* run the bootstrap script
-* change the IP in the nomad configuration file and add the consul client IP via sysrc
-* enable and start the services
+minipot will install everything you need to run a single-node service mesh.
+This **NOT** meant to be use for production, but to easily have all the service already configured on one node and to play with it.
 
-## Plan for the future
+### The components
 
-The first 3 steps should be performed by the minipot package
-The IP step can maybe performed by another script
+minipot is based on pot and nomad:
+* pot is a jail framework, that allows you to create and import jail images.
+* nomad is a container orchestrator
+Additionally, there are other applications:
+* consul: a service discovery application, it's needed to work with nomad. In consul, you can see all the services running in your mesh, where they are running and their health status
+* traefik: the http proxy/loadbalancer. traefik read the service catalag provided by consul and make all the services avaialable.
 
-Then, the last step, can be done by another script, validating the configuration files
+## How to install minipot
+
+The easiest way is to install the package:
+```console
+pkg install minipot
+```
+The package will install all the needed software and the configuration files.
+`pot` has to be configured, before to run the minipot initialization. To be more precise, its configuration file (`/usr/local/etc/pot/pot.conf`) needs your attenction. If you have trouble to configure it, please refer to the [`pot` installation guide](https://github.com/pizzamig/pot/blob/master/share/doc/pot/Installation.md)
+
+If you are already using nomad, traefik or consul, their configuration files will be copied using the suffix `.bkp`.
+
+Once you are ready, the init script will conclude the installation process:
+```console
+minipot-init
+```
+This script will modify your `/etc/rc.conf` to add the last pieces of configuration
+
+**NOTE** If your machine has 2 routable IP addresses, then you have to specify which address should be used to make your services available, for instance:
+```console
+minipot-init -i 192.168.0.1
+```
+
+`pot` to activate the resource limits framework, via a loader tunable. You can check if it's active via the command:
+```console
+sysctl kern.racct.enable
+```
+If the output is `0`, then you need a reboot.
+If the output is `1`, you are ready to go.
+
+## How to start minipot
+If you had to reboot your system, you can skip to the next section.
+If you didn't reboot your system, you can use an additional script, to start everything you need:
+```console
+minipot-start
+```
+
+This script will:
+* restart syslogd (to manage the new log files)
+* restart crond (to manage new cron entries)
+* start consul
+* start nomad
+* start traefik
+
+## Run the example
+In the minipot examples folder (`/usr/local/share/examples/minipot`), you can find a simple example you can use to deploy a nginx instance on your minipot.
+
+```console
+cd /usr/local/share/examples/minipot
+nomad run nginx.job
+```
+
+## A bit of diagnostic
+
+At port 8500, you can reach the consul web user interface.
+At port 4646, you can reach the nomad web user interface.
+At port 9002, you can reach the traefik web use interface.
+
+### Log files
+
+Every component has its own log file:
+* `/var/log/conusl/consul.log` is the consul log file (uses syslogd)
+* `/var/log/nomad/nomad.log` is the nomad log file (uses syslogd)
+* `/var/log/traefik.log` is the traefik error log file
+* `/var/log/traefik-access.log` is the traefik access log file
+
+minipot automatically configures proper log file rotation.
+
