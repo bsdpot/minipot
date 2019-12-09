@@ -31,6 +31,15 @@ while getopts :i:h arg; do
 	esac
 done
 
+if ! grep -c "^kern.racct.enable=1" /boot/loader.conf ; then
+	echo kern.racct.enable=1 >> /boot/loader.conf
+fi
+
+if [ ! -e /etc/pf.conf.potbkp ]; then
+	cp /etc/pf.conf /etc/pf.conf.potbkp
+	pot init
+fi
+
 sysrc nomad_user="root"
 sysrc nomad_env="PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/sbin:/bin"
 sysrc nomad_args="-config=/usr/local/etc/nomad/server.hcl"
@@ -48,6 +57,6 @@ chown traefik:traefik /var/log/traefik.log
 chown traefik:traefik /var/log/traefik-access.log
 
 if [ -n "$ip" ]; then
-	_inject_ip "$_ip"
+	_inject_ip "$ip"
 fi
 
