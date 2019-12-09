@@ -4,9 +4,6 @@ job "nginx-minipot" {
 
   group "group1" {
     count = 1 
-    meta = {
-      version = "1"
-    }
 
     update {
       max_parallel     = 1 
@@ -34,7 +31,7 @@ job "nginx-minipot" {
       config {
         image = "https://pot-registry.zapto.org/registry/"
         pot = "FBSD120-nginx"
-        tag = "1.0"
+        tag = "1.1"
         command = "nginx"
         args = [ 
           " -g 'daemon off;'"
