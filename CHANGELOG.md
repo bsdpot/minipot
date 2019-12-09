@@ -6,12 +6,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
+README: quickstart guide
+pot: add initialization steps
 traefik: proxy configuration file
 newsyslogd: log rotation for traefik
 cron: pot prune cron job (every 15 minutes)
 minipot-start.sh: easy script that start all the needed services
 
 ### Changed
+minipot scripts: remove .sh suffix
 consul: agent bind to 0.0.0.0
 nomad: small naming improvements
 minipot-init.sh: renamed from bootstrap.sh
