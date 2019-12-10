@@ -74,6 +74,16 @@ At port 8500, you can reach the consul web user interface.
 At port 4646, you can reach the nomad web user interface.
 At port 9002, you can reach the traefik web use interface.
 
+In consul or in nomad you can see at which address/port your nginx instance is running.
+The service is named `hello-web`.
+The nomad job is called `nginx-minipot`.
+
+`traefik` is listening on port 8080 to route http traffic to service registered in consul, depending on the host header.
+You can use the following command line to reach your nginx instance via traefik:
+``` console
+curl -H 'host: hello-web.minipot' 127.0.0.1:8080
+```
+
 ### Log files
 
 Every component has its own log file:
@@ -82,5 +92,5 @@ Every component has its own log file:
 * `/var/log/traefik.log` is the traefik error log file
 * `/var/log/traefik-access.log` is the traefik access log file
 
-minipot automatically configures proper log file rotation.
+minipot is already configured to do a log file rotation.
 
