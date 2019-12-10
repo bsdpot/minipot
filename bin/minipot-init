@@ -42,10 +42,11 @@ fi
 
 sysrc nomad_user="root"
 sysrc nomad_env="PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/sbin:/bin"
-sysrc nomad_args="-config=/usr/local/etc/nomad/server.hcl"
+sysrc nomad_args="-config=/usr/local/etc/nomad/minipot-server.hcl"
 sysrc consul_enable="YES"
 sysrc nomad_enable="YES"
 sysrc traefik_enable="YES"
+sysrc traefik_conf="/usr/local/etc/minipot-traefik.toml"
 
 mkdir -p /var/log/consul
 mkdir -p /var/log/nomad
