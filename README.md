@@ -24,7 +24,7 @@ The easiest way is to install the package:
 pkg install minipot
 ```
 The package will install all the needed software and the configuration files.
-`pot` has to be configured, before to run the minipot initialization. To be more precise, its configuration file (`/usr/local/etc/pot/pot.conf`) needs your attenction. If you have trouble to configure it, please refer to the [`pot` installation guide](https://github.com/pizzamig/pot/blob/master/share/doc/pot/Installation.md)
+`pot` has to be configured, before to run the minipot initialization. To be more precise, its configuration file (`/usr/local/etc/pot/pot.conf`) needs your attention. If you have trouble to configure it, please refer to the [`pot` installation guide](https://github.com/pizzamig/pot/blob/master/share/doc/pot/Installation.md)
 
 If you are already using nomad, traefik or consul, their configuration files will be copied using the suffix `.bkp`.
 
