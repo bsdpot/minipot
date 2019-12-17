@@ -5,6 +5,13 @@ job "nginx-minipot" {
   group "group1" {
     count = 1 
 
+    update {
+      max_parallel     = 1 
+      min_healthy_time = "10s"
+      healthy_deadline = "8m"
+      auto_revert      = true
+    }
+
     task "www1" {
       driver = "pot"
 
@@ -25,6 +32,10 @@ job "nginx-minipot" {
         image = "https://pot-registry.zapto.org/registry/"
         pot = "FBSD120-nginx"
         tag = "1.2"
+        command = "nginx"
+        args = [ 
+          " -g 'daemon off;'"
+        ]
 
         port_map = {
           http = "80"
