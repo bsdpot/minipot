@@ -39,7 +39,7 @@ This script will modify your `/etc/rc.conf` to add the last pieces of configurat
 minipot-init -i 192.168.0.1
 ```
 
-`pot` to activate the resource limits framework, via a loader tunable. You can check if it's active via the command:
+In order to show resource usage to nomad, `pot` needs to activate the resource limits framework, via a loader tunable. You can check if it's active via the command:
 ```console
 sysctl kern.racct.enable
 ```
