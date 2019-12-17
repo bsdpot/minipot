@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.2.1] 2019-12-17
+### Changed
+exmples: nginx.job is now really minial, while nginx-full.job is a bit more complete
+
 ## [0.2.0] 2019-12-17
 ### Added
 nomad: add the automatic configuration of the client's network interface
