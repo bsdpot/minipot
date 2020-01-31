@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.2.2] 2020-01-31
+cron: fix a nasty bug in the PATH, causing pot to be destroyed, even if running
+
 ## [0.2.1] 2019-12-17
 ### Changed
 exmples: nginx.job is now really minial, while nginx-full.job is a bit more complete
