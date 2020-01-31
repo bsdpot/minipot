@@ -43,7 +43,7 @@ In order to show resource usage to nomad, `pot` needs to activate the resource l
 ```console
 sysctl kern.racct.enable
 ```
-If the output is `0`, then you need a reboot.
+If the output is `0`, then you need to modify the `/boot/loader.conf` file and reboot.
 If the output is `1`, you are ready to go.
 
 ## How to start minipot
@@ -60,6 +60,11 @@ This script will:
 * start nomad
 * start traefik
 
+**NOTE** If you have issue with consul, try to invoke it as
+```
+consul agent
+```
+and read the output. If the deamon fails to start, no output will be written to the log.
 ## Run the example
 In the minipot examples folder (`/usr/local/share/examples/minipot`), you can find a simple example you can use to deploy a nginx instance on your minipot.
 
