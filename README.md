@@ -99,3 +99,8 @@ Every component has its own log file:
 
 minipot is already configured to do a log file rotation.
 
+## Troubleshooting
+
+If you shutdown the machine without stopping the nomad jobs, it can happen that nomad will have some difficulties restarting.
+If nomad won't restart, you can delete its temporary database removing the folder `/var/tmp/nomad`
+
