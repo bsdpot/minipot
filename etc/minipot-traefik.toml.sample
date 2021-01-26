@@ -4,16 +4,23 @@
   [entryPoints.traefik]
     address = "0.0.0.0:9002"
 
-logLevel="INFO"
-[traefikLog]
+[log]
   filePath = "/var/log/traefik.log"
+  format = "common"
+  level="INFO"
+
 [accessLog]
   filePath = "/var/log/traefik-access.log"
+  format = "common"
 
 [api]
+  insecure = true
   dashboard = true
-[consulcatalog]
-  endpoint = "127.0.0.1:8500"
-  stale = false
-  exposedByDefault = true
-  frontEndRule = "Host:{{ .ServiceName }}.minipot"
+
+[providers]
+  [providers.consulCatalog]
+    exposedByDefault = true
+    defaultRule = "Host(`{{ .Name }}.minipot`)"
+    stale = false
+    [providers.consulCatalog.endpoint]
+    address = "http://127.0.0.1:8500"
