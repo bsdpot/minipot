@@ -92,7 +92,7 @@ curl -H 'host: hello-web.minipot' 127.0.0.1:8080
 ### Log files
 
 Every component has its own log file:
-* `/var/log/conusl/consul.log` is the consul log file (uses syslogd)
+* `/var/log/consul/consul.log` is the consul log file (uses syslogd)
 * `/var/log/nomad/nomad.log` is the nomad log file (uses syslogd)
 * `/var/log/traefik.log` is the traefik error log file
 * `/var/log/traefik-access.log` is the traefik access log file
