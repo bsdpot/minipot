@@ -69,10 +69,6 @@ sysrc nomad_enable="YES"
 sysrc traefik_enable="YES"
 sysrc traefik_conf="/usr/local/etc/minipot-traefik.toml"
 
-if [ -n "$netif" ]; then
-	sysrc nomad_args+=" -network-interface=$netif"
-fi
-
 mkdir -p /var/log/consul
 mkdir -p /var/log/nomad
 touch /var/log/consul/consul.log
