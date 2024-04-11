@@ -62,15 +62,15 @@ pot init
 sysrc nomad_user="root"
 sysrc nomad_dir="/var/tmp/nomad"
 sysrc nomad_env="PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/sbin:/bin"
-if [ -n "$netif" ]; then
-	sysrc nomad_args="-config=/usr/local/etc/nomad/minipot-server.hcl -data-dir=\$\{nomad_dir\} -network-interface=$netif"
-else
-	sysrc nomad_args="-config=/usr/local/etc/nomad/minipot-server.hcl -data-dir=\$\{nomad_dir\}" 
-fi
+sysrc nomad_args="-config=/usr/local/etc/nomad/minipot-server.hcl -data-dir=\$\{nomad_dir\}"
 sysrc consul_enable="YES"
 sysrc nomad_enable="YES"
 sysrc traefik_enable="YES"
 sysrc traefik_conf="/usr/local/etc/minipot-traefik.toml"
+
+if [ -n "$netif" ]; then
+	sysrc nomad_args+=" -network-interface=$netif"
+fi
 
 mkdir -p /var/log/consul
 mkdir -p /var/log/nomad
