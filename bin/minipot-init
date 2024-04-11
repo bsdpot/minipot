@@ -60,11 +60,12 @@ fi
 pot init
 
 sysrc nomad_user="root"
+sysrc nomad_dir="/var/tmp/nomad"
 sysrc nomad_env="PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/sbin:/bin"
 if [ -n "$netif" ]; then
-	sysrc nomad_args="-config=/usr/local/etc/nomad/minipot-server.hcl -network-interface=$netif"
+	sysrc nomad_args="-config=/usr/local/etc/nomad/minipot-server.hcl -data-dir=\$\{nomad_dir\} -network-interface=$netif"
 else
-	sysrc nomad_args="-config=/usr/local/etc/nomad/minipot-server.hcl"
+	sysrc nomad_args="-config=/usr/local/etc/nomad/minipot-server.hcl -data-dir=\$\{nomad_dir\}" 
 fi
 sysrc consul_enable="YES"
 sysrc nomad_enable="YES"
