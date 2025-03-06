@@ -1,5 +1,6 @@
 bind_addr = "0.0.0.0"
 plugin_dir = "/usr/local/libexec/nomad/plugins"
+plugin "nomad-pot-driver" {}
 datacenter = "minipot"
 
 advertise {
